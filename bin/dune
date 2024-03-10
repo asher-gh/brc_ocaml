@@ -1,0 +1,4 @@
+(executable
+ (public_name brc_ocaml)
+ (name main)
+ (libraries brc_ocaml))
