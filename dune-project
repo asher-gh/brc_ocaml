@@ -5,22 +5,17 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github asher-gh/brc_ocaml))
 
-(authors "Author Name")
+(authors "Asher")
 
-(maintainers "Maintainer Name")
+(maintainers "Asher")
 
 (license LICENSE)
 
-(documentation https://url/to/documentation)
-
 (package
  (name brc_ocaml)
- (synopsis "A short synopsis")
- (description "A longer description")
- (depends ocaml dune)
- (tags
-  (topics "to describe" your project)))
+ (synopsis "1 Billion Row Challenge in OCaml")
+ (depends ocaml dune))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
