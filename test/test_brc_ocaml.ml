@@ -44,7 +44,9 @@ let suite =
       test_process_file "../data/measurements_test.csv" );
   ]
 
-let () = Alcotest.run "Tests" [ ("Greeting", suite) ]
+let () = Alcotest.run "brc_ocaml" [ ("process_file", suite) ]
+
+(* let () = Alcotest.run "Tests" [ ("Greeting", suite) ] *)
 
 (* let suite = *)
 (*   [ *)

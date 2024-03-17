@@ -1,6 +1,11 @@
 type temp = int * int
 
-let add_temp (a1, b1) (a2, b2) : temp = (a1 + a2, b1 + b2)
+let add_temp (a1, b1) (a2, b2) : temp =
+  let new_frac = b1 + b2 in
+  let carry, new_frac_corrected =
+    if new_frac >= 10 then (1, new_frac - 10) else (0, new_frac)
+  in
+  (a1 + a2 + carry, new_frac_corrected)
 
 let min_temp (a1, b1) (a2, b2) =
   if a1 < a2 then (a1, b1)
@@ -15,7 +20,7 @@ let max_temp (a1, b1) (a2, b2) =
   else (a2, b2)
 
 let temp_to_float (whole, fraction) =
-  float_of_int whole +. (float_of_int fraction /. 100.0)
+  float_of_int whole +. (float_of_int fraction /. 10.0)
 
 type station = {
   mutable total_temp : temp;
@@ -30,12 +35,19 @@ let update_station_data stations name temperature =
   let data =
     if Hashtbl.mem stations name then Hashtbl.find stations name
     else
-      { min_temp = (0, 0); max_temp = (0, 0); total_temp = (0, 0); count = 0 }
+      {
+        min_temp = temperature;
+        max_temp = temperature;
+        total_temp = temperature;
+        count = 1;
+      }
   in
-  data.min_temp <- min_temp data.min_temp temperature;
-  data.max_temp <- max_temp data.max_temp temperature;
-  data.total_temp <- add_temp data.total_temp temperature;
-  data.count <- data.count + 1;
+  (* Update only if station already existed *)
+  if Hashtbl.mem stations name then (
+    data.min_temp <- min_temp data.min_temp temperature;
+    data.max_temp <- max_temp data.max_temp temperature;
+    data.total_temp <- add_temp data.total_temp temperature;
+    data.count <- data.count + 1);
   Hashtbl.replace stations name data
 
 let parse_line stations line =
