@@ -1,2 +1,6 @@
 (test
- (name test_brc_ocaml))
+ (name test_brc_ocaml)
+ (deps ../data/measurements_test.csv)
+ (libraries alcotest brc_ocaml))
+
+

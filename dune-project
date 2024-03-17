@@ -13,9 +13,11 @@
 
 (license LICENSE)
 
+
 (package
  (name brc_ocaml)
  (synopsis "1 Billion Row Challenge in OCaml")
  (depends ocaml dune))
 
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
+; See the complete stanza dhttps://dune.readthedocs.io/en/stable/dune-files.html#dune-projectocs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
+
